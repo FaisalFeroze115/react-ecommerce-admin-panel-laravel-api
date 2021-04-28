@@ -6,14 +6,16 @@ import Login from './components/Login'
 import Register from './components/Register'
 import AddProduct from './components/AddProduct'
 import UpdateProduct from './components/UpdateProduct'
+import Protected from './components/Protected'
+
 
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Header/>
-        <h1>Ecommerce</h1>
+        {/* <Header/> */}
+       
         <Route path="/login">
           <Login/>
         </Route>
@@ -21,10 +23,12 @@ function App() {
           <Register/>
         </Route>
         <Route path="/add">
-          <AddProduct/>
+          {/* <AddProduct/> */}
+          <Protected Cmp={AddProduct}/>
         </Route>
         <Route path="/update">
-          <UpdateProduct/>
+          <Protected Cmp={UpdateProduct}/>
+          {/* <UpdateProduct/> */}
         </Route>
       </Router>
     </div>
