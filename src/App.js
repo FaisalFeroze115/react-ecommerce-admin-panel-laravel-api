@@ -7,10 +7,23 @@ import Register from './components/Register'
 import AddProduct from './components/AddProduct'
 import UpdateProduct from './components/UpdateProduct'
 import Protected from './components/Protected'
+import ProductLists from './components/ProductLists'
+import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
 
 
 
 function App() {
+
+  const history = useHistory();
+
+  // useEffect(()=>{
+  //   if(localStorage.getItem('user-info')){
+  //     history.push('/add');
+  // }
+  // },[])
+
+
   return (
     <div className="App">
       <Router>
@@ -19,17 +32,25 @@ function App() {
         <Route path="/login">
           <Login/>
         </Route>
+
         <Route path="/register">
           <Register/>
         </Route>
+
+        <Route exact path="/">
+          <Protected Cmp={ProductLists}/>
+        </Route>
+
         <Route path="/add">
           {/* <AddProduct/> */}
           <Protected Cmp={AddProduct}/>
         </Route>
-        <Route path="/update">
+
+        <Route path="/update/:id">
           <Protected Cmp={UpdateProduct}/>
           {/* <UpdateProduct/> */}
         </Route>
+
       </Router>
     </div>
   );
